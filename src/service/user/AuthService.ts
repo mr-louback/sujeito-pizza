@@ -35,9 +35,9 @@ class AuthService {
           expiresIn: "1d"
         }
       )
-      
+      const processEnv = process.env.JWT_SECRET
       // console.log(cryotgrafyCrypto);
-      console.log((token));
+      console.log(token, processEnv);
 
 
       
