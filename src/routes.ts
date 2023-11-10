@@ -3,16 +3,16 @@ import { UserController } from "./controller/user/UserController";
 import { AuthController } from "./controller/user/AuthController";
 import { DetailsUserController } from './controller/user/DetailsUserController';
 import { isAuthenticated } from './middleware/isAuthenticated';
+import { CategoryController } from './controller/category/CategoryController';
+import { ListCategoryController } from './controller/category/ListCategoryController';
 
 const router = Router();
-// Login - usuários 
+// users 
 router.post('/auth', new AuthController().handleAuthUser);
-// CRUD - usuários
-router.post('/users/create', new UserController().handleCreateUser);
-//
+router.post('/users', new UserController().handleCreateUser);
 router.get('/users/me', isAuthenticated, new DetailsUserController().handleDetailsUser);
-// //
-// router.put('/users/update', new UserController().handleUpdateUser);
-// //
-// router.delete('/users/delete', new UserController().handleDeleteUser);
+// categories
+router.post('/categories', isAuthenticated, new CategoryController().handleCreateCategory);
+router.get('/categories', isAuthenticated, new ListCategoryController().handleListCategory);
+
 export { router }
