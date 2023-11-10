@@ -4,6 +4,7 @@
   "description": "Uma aplicação para o garçon usar para anotar os pedidos dos clientes e enviar para a cozinha.",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "dev": "ts-node-dev src/server.ts"
   },
   "keywords": [],
