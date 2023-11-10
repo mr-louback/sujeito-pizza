@@ -1,7 +1,7 @@
+import crypt from 'crypto'
 import prismaClient from '../../prisma'
 import { sign } from 'jsonwebtoken'
 import { compare } from 'bcryptjs'
-import  crypto  from 'crypto'
 interface AuthRequest {
   email: string;
   password: string;
@@ -23,26 +23,20 @@ class AuthService {
       throw new Error("Email/Password incorrect");
     }
     //
-    const cryotgrafyCrypto = crypto.randomBytes(32)
+     
     const token = sign
       (
         {
+          name: userExists.name,
           email: userExists.email
         },
-        cryotgrafyCrypto,
+        process.env.JWT_SECRET_KEY,
         {
           subject: userExists.id,
-          expiresIn: "1d"
+          expiresIn: "30d"
         }
       )
-      const processEnv = process.env.JWT_SECRET
-      // console.log(cryotgrafyCrypto);
-      console.log(token, processEnv);
-
-
-      
-      
-    return { message: "User Authorized successfully" };
+    return { message: "User Authorized successfully", userData: { id: userExists.id, name: userExists.name, email: userExists.email, token } };
   }
 }
 export { AuthService };
