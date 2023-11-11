@@ -9,8 +9,13 @@ import { DetailsUserController } from './controller/user/DetailsUserController';
 import { isAuthenticated } from './middleware/isAuthenticated';
 import { CategoryController } from './controller/category/CategoryController';
 import { ListCategoryController } from './controller/category/ListCategoryController';
+import { ProductController } from './controller/product/ProductController';
+import multer from 'multer'
+import uploadConfig from './config/multer'
 
 const router = Router();
+const upload = multer(uploadConfig.upload('./tmp'));
+
 // users 
 router.post('/auth', new AuthController().handleAuthUser);
 router.post('/users', new UserController().handleCreateUser);
@@ -19,5 +24,5 @@ router.get('/users/me', isAuthenticated, new DetailsUserController().handleDetai
 router.post('/categories', isAuthenticated, new CategoryController().handleCreateCategory);
 router.get('/categories', isAuthenticated, new ListCategoryController().handleListCategory);
 // products
-
+router.post('/products', isAuthenticated, upload.single('file'), new ProductController().handleProduct);
 export { router }
