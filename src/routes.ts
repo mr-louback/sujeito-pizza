@@ -26,7 +26,7 @@ router.post('/categories', isAuthenticated, new CategoryController().handleCreat
 router.get('/categories', isAuthenticated, new ListCategoryController().handleListCategory);
 // products
 router.post('/product', isAuthenticated, upload.single('file'), new ProductController().handleProduct);
-router.get('/category/product/:category_id' , isAuthenticated, new ListByCategoryController().handle)
+router.get('/category/product' , isAuthenticated, new ListByCategoryController().handle)
 
 
 export { router }

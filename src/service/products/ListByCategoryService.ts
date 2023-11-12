@@ -13,23 +13,23 @@ interface ListResponse {
 }
 class ListByCategoryService {
   async execute({ category_id }: ListRequest) {
+    const listByCategory = await prismaClient.product.findMany({
+      where: {
+        category_id
+      },
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        price: true,
+        banner: true,
+        category_id: true,
+        items: true,
+      }
+    })
+    return listByCategory;
 
-    // const listByCategory = await prismaClient.product.findMany({
-    //   where: {
-    //     category_id
-    //   },
-    //   select: {
-    //     id: true,
-    //     name: true,
-    //     description: true,
-    //     price: true,
-    //     banner: true,
-    //     category_id: true,
-    //     items: true,
-    //   }
-    // })
-    // return listByCategory;
-    return { ok: true }
+
   }
 }
 export { ListByCategoryService }
