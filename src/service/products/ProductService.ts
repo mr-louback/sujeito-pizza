@@ -1,4 +1,3 @@
-import { Omit } from "@prisma/client/runtime/library";
 import prismaClient from "../../prisma";
 interface ProductsRequest {
   name: string;
@@ -7,22 +6,14 @@ interface ProductsRequest {
   banner: string;
   category_id: string;
   items: string;
+}
 
-}
-interface ProductResponse {
-  id: string;
-  name: string;
-  description: string;
-  price: string;
-  banner: string;
-  category_id: string; 
-}
 class ProductService {
-  async execute({ name, description, price, banner, category_id,items }: ProductsRequest) {
+  async execute({ name, description, price, banner, category_id, items }: ProductsRequest) {
     try {
       const createProduct = await prismaClient.product.create(
         {
-          data: { name, description, price, banner, category_id,items },
+          data: { name, description, price, banner, category_id, items },
           select: {
             id: true,
             name: true,
@@ -30,7 +21,7 @@ class ProductService {
             price: true,
             banner: true,
             category_id: true,
-
+            items: true
           }
         }
       );

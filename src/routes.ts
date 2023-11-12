@@ -12,6 +12,7 @@ import { ListCategoryController } from './controller/category/ListCategoryContro
 import { ProductController } from './controller/product/ProductController';
 import multer from 'multer'
 import uploadConfig from './config/multer'
+import { ListByCategoryController } from './controller/product/ListByCategoryController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload('./tmp'));
@@ -24,5 +25,8 @@ router.get('/users/me', isAuthenticated, new DetailsUserController().handleDetai
 router.post('/categories', isAuthenticated, new CategoryController().handleCreateCategory);
 router.get('/categories', isAuthenticated, new ListCategoryController().handleListCategory);
 // products
-router.post('/products', isAuthenticated, upload.single('file'), new ProductController().handleProduct);
+router.post('/product', isAuthenticated, upload.single('file'), new ProductController().handleProduct);
+router.get('/category/product/:category_id' , isAuthenticated, new ListByCategoryController().handle)
+
+
 export { router }
