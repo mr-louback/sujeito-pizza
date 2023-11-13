@@ -56,7 +56,8 @@ model Order {
   name       String
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
-  items      Item[]
+  items       String
+  item      Item[]
 
   @@map("orders")
 }

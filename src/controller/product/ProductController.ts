@@ -7,11 +7,10 @@ class ProductController {
     if (!req.file) {
       throw new Error("File not found");
     }
-    else {
-      const productService = new ProductService();
-      const { originalname, filename: banner } = req.file;
-      return res.json(await productService.execute({ name, description, price, banner, category_id, items }));
-    }
+
+    const productService = new ProductService();
+    const { originalname, filename: banner } = req.file;
+    return res.json(await productService.execute({ name, description, price, banner, category_id, items }));
   }
 
 }
