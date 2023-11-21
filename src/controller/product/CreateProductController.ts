@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { ProductService } from "../../service/products/ProductService";
-class ProductController {
-  async handleProduct(req: Request, res: Response) {
+class CreateProductController {
+  async handle(req: Request, res: Response) {
     const { name, description, price, category_id, items } = req.body
 
     if (!req.file) {
@@ -14,4 +14,4 @@ class ProductController {
   }
 
 }
-export { ProductController }
+export { CreateProductController }
