@@ -5,15 +5,15 @@ interface ProductsRequest {
   price: string;
   banner: string;
   category_id: string;
-  items: string;
+
 }
 
 class ProductService {
-  async execute({ name, description, price, banner, category_id, items }: ProductsRequest) {
+  async execute({ name, description, price, banner, category_id }: ProductsRequest) {
 
     const createProduct = await prismaClient.product.create(
       {
-        data: { name, description, price, banner, category_id, items },
+        data: { name, description, price, banner, category_id },
         select: {
           id: true,
           name: true,
