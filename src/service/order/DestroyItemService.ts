@@ -1,12 +1,12 @@
 import prismaClient from "../../prisma";
 interface ItemRequest {
-  product_id: string;
+  item_id: string;
 }
 class DestroyItemService {
-  async execute({ product_id }: ItemRequest) {
+  async execute({ item_id }: ItemRequest) {
     const destroyProduct = await prismaClient.item.delete({
       where: {
-        id: product_id,
+        id: item_id,
       }
     })
     return destroyProduct
