@@ -50,8 +50,8 @@ model Product {
 model Order {
   id         String    @id @default(uuid())
   table      String
-  status     Boolean @default(true)
-  draft      Boolean @default(false)
+  status     Boolean @default(false)
+  draft      Boolean @default(true)
   name       String? 
 
   created_at DateTime? @default(now())
