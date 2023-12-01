@@ -17,6 +17,7 @@ import { CreateOrderController } from './controller/order/CreateOrderController'
 import { DestroyOrderController } from './controller/order/DestroyOrderController'
 import { AddItemController } from './controller/order/AddItemController';
 import { DestroyItemController } from './controller/order/DestroyItemController';
+import { SendOrderController } from './controller/order/SendOrderController';
 
 const router = Router();
 const upload = multer(uploadConfig.upload('./tmp'));
@@ -29,11 +30,13 @@ router.post('/categories', isAuthenticated, new CreateCategoryController().handl
 router.get('/categories', isAuthenticated, new ListCategoryController().handle);
 // products
 router.post('/product', isAuthenticated, upload.single('file'), new CreateProductController().handle);
-router.get('/category/product', isAuthenticated, new ListByCategoryController().handle)
+router.get('/category/product', isAuthenticated, new ListByCategoryController().handle);
 // orders
-router.post('/order', isAuthenticated, new CreateOrderController().handle)
-router.delete('/order', isAuthenticated, new DestroyOrderController().handle)
+router.post('/order', isAuthenticated, new CreateOrderController().handle);
+router.delete('/order', isAuthenticated, new DestroyOrderController().handle);
+router.put('/order', isAuthenticated, new SendOrderController().handle);
 //orders item
-router.post('/order/add', isAuthenticated, new AddItemController().handle)
-router.delete('/order/destroy', isAuthenticated, new DestroyItemController().handle)
+router.post('/order/add', isAuthenticated, new AddItemController().handle);
+router.delete('/order/destroy', isAuthenticated, new DestroyItemController().handle);
+
 export { router }
